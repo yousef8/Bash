@@ -55,3 +55,30 @@
 ### Q.8: Get the sum of all accounts id's?
 
 ![](./imgs/bash-lab1-awk-8.png)
+
+## Bonus
+
+### Q.1
+
+```bash
+sort -t: -k4 -n /etc/passwd | awk -F: 'BEGIN {curGrp=0; sumId=0} {if ($4 != curGrp) {if (NR > 0) {print "Group ["curGrp"]\t"sumId}; sumId =0; curGrp=$4} sumId += $3} END {print "Group ["curGrp"]\t"sumId}'
+```
+![](./imgs/bash-lab1-bonus-1.png)
+
+### Q.2
+
+```bash
+sort -t: -k4 -n /etc/passwd | awk -F: ' BEGIN {curGrp = -1}
+{if (curGrp != $4)
+{ curGrp = $4;
+cmd = "getent group " curGrp " | cut -d: -f1";
+cmd | getline grpName;
+close(cmd);
+print "\nGroup [" grpName "]";
+}
+{print $1}
+}'
+```
+![](./imgs/bash-lab1-bonus-2-a.png)
+![](./imgs/bash-lab1-bonus-2-b.png)
+
