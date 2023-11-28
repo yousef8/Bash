@@ -58,7 +58,7 @@
 
 ## Bonus
 
-### Q.1
+### Q.1: Get the sum of accounts id's that has the same group?
 
 ```bash
 sort -t: -k4 -n /etc/passwd | awk -F: 'BEGIN {curGrp=0; sumId=0} {if ($4 != curGrp) {if (NR > 0) {print "Group ["curGrp"]\t"sumId}; sumId =0; curGrp=$4} sumId += $3} END {print "Group ["curGrp"]\t"sumId}'
