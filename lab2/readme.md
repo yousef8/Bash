@@ -51,11 +51,7 @@ echo "Hello $name :)"
 ```bash
 #!/usr/bin/bash
 
-if [ $# = 0 ]
-then
- echo "At least 2 arguemnts needed source and destination"
- exit 1
-fi
+[ $# = 0 ] && { echo "At least 2 arguemnts needed source and destination"; exit 1; }
 
 cp $@
 
@@ -78,7 +74,7 @@ cd $@
 
 ![](./imgs/bash-lab2-4.png)
 
-## Q.5: Create a script called `myls` where :
+## Q.5: Create a script called `myls` where
 
 1. **It lists the current directory, if it's called withou arguments**
 
@@ -92,7 +88,7 @@ ls $@
 
 ![](./imgs/bash-lab2-5.png)
 
-## Q.6: Enhance the above script to support the following options individually:
+## Q.6: Enhance the above script to support the following options individually
 
 1. `-l` lists in long format
 1. `-a` list all entries including the hiding files
@@ -104,17 +100,17 @@ ls $@
 #!/usr/bin/bash
 
 # ${@:2} expand to all arguments except the 1st one
-[ "$1" = '-l' ] && ls -l "${@:2}" && exit 0;
-[ "$1" = '-a' ] && ls -a "${@:2}" && exit 0;
-[ "$1" = '-d' ] && ls -d "${@:2}" && exit 0;
-[ "$1" = '-R' ] && ls -R "${@:2}" && exit 0;
+[ "$1" = '-l' ] && { ls -l "${@:2}"; exit 0; }
+[ "$1" = '-a' ] && { ls -a "${@:2}"; exit 0; }
+[ "$1" = '-d' ] && { ls -d "${@:2}"; exit 0; }
+[ "$1" = '-R' ] && { ls -R "${@:2}"; exit 0; }
 
 ls "$@"
 ```
 
 ![](./imgs/bash-lab2-6.png)
 
-## Q.7: Create a script called `mytest` where :
+## Q.7: Create a script called `mytest` where
 
 1. **It checkthe type of the given argument (file/directory)**
 1. **It check the permissiosn of the given argument (read/write/execute)**
@@ -123,9 +119,9 @@ ls "$@"
 #!/usr/bin/bash
 
 # Input Validation
-[ $# -ne 1 ] && echo "Usage: 1 argument required" && exit 1;
+[ $# -ne 1 ] { echo "Usage: 1 argument required"; exit 1; }
 
-[ ! -e $1 ] && echo "Not a valid File or Directory" && exit 1;
+[ ! -e $1 ] { echo "Not a valid File or Directory"; exit 1; }
 
 # Actual Logic
 # -n is prevent trailing \n
@@ -145,7 +141,7 @@ echo
 
 ![](./imgs/bash-lab2-7.png)
 
-## Q.8: Create a script called `myinfo` where :
+## Q.8: Create a script called `myinfo` where
 
 1. **It asks the user about his/her login name**
 1. **It prints full info about files and directories in his/her home directory**
@@ -160,7 +156,7 @@ homeDir="/home/$loginName"
 
 if [ -e $homeDir ]
 then
-	ls -l $homeDir
+ ls -l $homeDir
 
   echo -e "\n\nProcesses Status =>"
   ps -f
@@ -169,8 +165,8 @@ then
   echo "Finished copying"
 
 else
-	echo "No Home Directory for this user"
-	exit 1
+ echo "No Home Directory for this user"
+ exit 1
 fi
 ```
 

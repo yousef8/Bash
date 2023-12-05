@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
 # Input Validation
-[ $# -ne 1 ] && echo "Usage: 1 argument required" && exit 1;
+[ $# -ne 1 ] { echo "Usage: 1 argument required"; exit 1; }
 
-[ ! -e $1 ] && echo "Not a valid File or Directory" && exit 1;
+[ ! -e $1 ] { echo "Not a valid File or Directory"; exit 1; }
 
 # Actual Logic
 # -n is prevent trailing \n
