@@ -158,9 +158,29 @@
 
     ![](./imgs/bash-lab3-5.png)
 
-## Q.6
+## Q.6: Write script `chkmail` to check for new mails every 10 seconds?
 
-To-DO
+* Solution
+  
+  ```bash
+  #!/usr/bin/bash
+
+  ((lines=0))
+
+  while true
+  do
+    newLines=$(cat "/var/mail/$USER" | wc -l)
+    if [[ $newLines > $lines ]]; then
+      echo "You've Got Mail"
+      lines=$newLines
+    fi
+    sleep 10s
+  done
+  ```
+
+* Output
+  
+  ![](./imgs/bash-lab3-6.png)
 
 ## Q.7: What is the output of the given script?
 
